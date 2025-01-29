@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Event</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="w-1/2 mx-auto mt-10">
+        <h1 class="text-2xl font-bold mb-4">Delete Event</h1>
+        <p>Are you sure you want to delete the event: <strong>{{ event.name }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit"
+                class="bg-red-500 px-3 py-2 text-white mt-2 rounded-md hover:bg-red-600 transform hover:scale-105">Delete</button>
+        </form>
+    </div>
+</body>
+
+</html>

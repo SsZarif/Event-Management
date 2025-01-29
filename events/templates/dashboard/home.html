@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'homepage' %}" class="text-white text-2xl font-bold">EventHub</a>
+            <div class="flex items-center">
+                <a href="{% url 'homepage' %}" class="text-white px-4 py-2">Home</a>
+                <a href="{% url 'event_list' %}" class="text-white px-4 py-2">Events</a>
+                <a href="#" class="text-white px-4 py-2">Contact</a>
+                <!-- Search Form -->
+                <form action="{% url 'homepage' %}" method="get" class="flex ml-6">
+                    <input type="text" name="search" placeholder="Search events..."
+                        class="px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        value="{{ request.GET.search }}">
+                    <button type="submit" class="bg-slate-500 text-white px-4 py-2 rounded-r-lg">Search</button>
+                </form>
+                <a href="{% url 'organizer_dashboard' %}"
+                    class="text-white px-4 py-2 ml-6 bg-blue-800 rounded-lg hover:bg-blue-700">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    {% load static %}
+    <section class="relative bg-cover bg-center h-[600px]">
+        <img src="{% static 'images/1.jpg' %}" alt="EventHub Background Image">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="container mx-auto text-center text-white relative z-10 pt-24">
+                <h1 class="text-5xl font-bold">Welcome to EventHub</h1>
+                <p class="text-lg mt-4">Discover the best events in your area.</p>
+                <a href="#events" class="mt-6 inline-block bg-blue-600 text-white py-3 px-6 rounded-lg text-lg">Browse Events</a>
+            </div>
+    </section>
+
+
+    <!-- Featured Events Section -->
+    <section id="events" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold">{% if request.GET.search %}Searched Events{% else %}Featured Events{% endif %}</h2>
+            <p class="text-lg mt-4 text-gray-600">{% if request.GET.search %}Showing results for "{{ request.GET.search }}"{% else %}Don't miss out on these exciting events!{% endif %}</p>
+
+            <!-- Display Search Results -->
+            <div id="search-results" class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% if events %}
+                {% for event in events %}
+                <div class="bg-white p-6 rounded-lg shadow-sm block hover:bg-blue-200">
+                    <h3 class="text-xl font-semibold">{{ event.name }}</h3>
+                    <p class="text-gray-600 mt-2">{{ event.location }}</p>
+                    <p class="text-gray-600 mt-2">{{ event.description }}</p>
+                    <p class="text-gray-600 mt-2">{{ event.start_time|date:"M d, Y g:i a" }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No events found matching your search.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 EventHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

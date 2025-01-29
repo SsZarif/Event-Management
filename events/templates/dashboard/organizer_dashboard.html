@@ -1,0 +1,40 @@
+    {% extends "dashboard/dashboard.html" %}
+    {% block title %}Organizer Dashboard{% endblock %}
+
+    {% block tasks %}
+    <!-- Display Events Based on Selection -->
+    {% if events %}
+    <div class="mb-8 grid grid-cols-3 gap-6">
+        {% for event in events %}
+        <a href="?event_id={{ event.id }}" class="bg-white p-6 rounded-lg shadow-sm block hover:bg-blue-200">
+            <div class="">
+                <h4 class="text-2xl font-semibold">{{ event.name }}</h4>
+                <p class="text-gray-600">{{ event.start_time|date:"M d, Y g:i a" }}</p>
+                <p class="mt-2 text-lg">{{ event.description }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Modal for Event Details -->
+    {% if selected_event %}
+    <div id="event-modal" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
+        <div class="relative p-4 w-full max-w-4xl max-h-full bg-white rounded-lg shadow-sm">
+            <div class="p-4 border-b">
+                <h3 class="text-3xl font-semibold text-gray-900">{{ selected_event.name }}</h3>
+            </div>
+            <div class="p-4">
+                <p><strong>Description:</strong> {{ selected_event.description }}</p>
+                <p><strong>Date:</strong> {{ selected_event.start_time|date:"M d, Y" }}</p>
+                <p><strong>Time:</strong> {{ selected_event.start_time|time:"g:i a" }}</p>
+                <p><strong>Location:</strong> {{ selected_event.location }}</p>
+            </div>
+            <div class="p-4">
+                <a href="{% url 'organizer_dashboard' %}" class="text-white bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-lg">Close</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+

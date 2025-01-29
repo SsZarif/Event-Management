@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex min-h-screen">
+        <div class="w-64 bg-blue-800 text-white p-6">
+            <h2 class="text-2xl font-semibold mb-8"><a href="{% url 'organizer_dashboard' %}">Organizer Dashboard</a></h2>
+            <ul>
+                <li class="mb-6"><a href="{% url 'homepage' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Home</a></li>
+                <li class="mb-6"><a href="{% url 'event_list' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Events</a></li>
+                <li class="mb-6"><a href="{% url 'create_event' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Create Event</a></li>
+                <li class="mb-6"><a href="{% url 'participant_list' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Participants</a></li>
+                <li class="mb-6"><a href="{% url 'create_participant' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Add Participant</a></li>
+            </ul>
+        </div>
+
+        <div class="flex-1 p-8">
+            <h1 class="text-3xl font-semibold mb-6">Welcome to the Organizer Dashboard</h1>
+
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="text-sm font-medium text-gray-500 mb-4">Total Participants</h3>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-3xl font-semibold mb-1">{{ total_participants }}</p>
+                                <p class="text-gray-500 text-sm">Total participants in all events</p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <!-- Icon -->
+                            </div>
+                        </div>
+                    </div>
+
+                <a href="{% url 'organizer_dashboard' %}?event_type=total">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="text-sm font-medium text-gray-500 mb-4">Total Events</h3>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-3xl font-semibold mb-1">{{ total_events }}</p>
+                                <p class="text-gray-500 text-sm">All events</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{% url 'organizer_dashboard' %}?event_type=upcoming">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="text-sm font-medium text-gray-500 mb-4">Upcoming Events</h3>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-3xl font-semibold mb-1">{{ upcoming_events }}</p>
+                                <p class="text-gray-500 text-sm">Events scheduled for the future</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{% url 'organizer_dashboard' %}?event_type=past">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 class="text-sm font-medium text-gray-500 mb-4">Past Events</h3>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-3xl font-semibold mb-1">{{ past_events }}</p>
+                                <p class="text-gray-500 text-sm">Events that have already happened</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% block tasks %}
+            <!-- Dynamic content will be injected here -->
+            {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
+
