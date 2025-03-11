@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,30 @@
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
         <div class="w-64 bg-blue-800 text-white p-6">
-            <h2 class="text-2xl font-semibold mb-8"><a href="{% url 'organizer_dashboard' %}">Organizer Dashboard</a></h2>
+            <h2 class="text-2xl font-semibold mb-8"><a href="{% url 'organizer_dashboard' %}">Organizer Dashboard</a>
+            </h2>
             <ul>
-                <li class="mb-6"><a href="{% url 'homepage' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Home</a></li>
-                <li class="mb-6"><a href="{% url 'event_list' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Events</a></li>
-                <li class="mb-6"><a href="{% url 'create_event' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Create Event</a></li>
-                <li class="mb-6"><a href="{% url 'participant_list' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Participants</a></li>
-                <li class="mb-6"><a href="{% url 'create_participant' %}" class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Add Participant</a></li>
+                <li class="mb-6"><a href="{% url 'homepage' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Home</a>
+                </li>
+                <li class="mb-6"><a href="{% url 'event_list' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Events</a>
+                </li>
+                <li class="mb-6"><a href="{% url 'create_event' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Create
+                        Event</a></li>
+                <li class="mb-6"><a href="{% url 'participant_list' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Participants</a>
+                </li>
+                <li class="mb-6"><a href="{% url 'create_participant' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Add
+                        Participant</a></li>
+                <li class="mb-6"><a href="{% url 'category_list' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Categories</a>
+                </li>
+                <li class="mb-6"><a href="{% url 'create_category' %}"
+                        class="text-white bg-green-500 p-2 rounded hover:bg-red-500 transform hover:scale-105">Create
+                        Category</a></li>
             </ul>
         </div>
 
@@ -24,18 +42,18 @@
             <h1 class="text-3xl font-semibold mb-6">Welcome to the Organizer Dashboard</h1>
 
             <div class="grid grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 class="text-sm font-medium text-gray-500 mb-4">Total Participants</h3>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <p class="text-3xl font-semibold mb-1">{{ total_participants }}</p>
-                                <p class="text-gray-500 text-sm">Total participants in all events</p>
-                            </div>
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <!-- Icon -->
-                            </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500 mb-4">Total Participants</h3>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-3xl font-semibold mb-1">{{ total_participants }}</p>
+                            <p class="text-gray-500 text-sm">Total participants in all events</p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <!-- Icon -->
                         </div>
                     </div>
+                </div>
 
                 <a href="{% url 'organizer_dashboard' %}?event_type=total">
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -82,4 +100,3 @@
 </body>
 
 </html>
-
