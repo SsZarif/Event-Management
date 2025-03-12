@@ -15,7 +15,7 @@
     <!-- Navbar -->
     <nav class="bg-blue-600 p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'homepage' %}" class="text-white text-2xl font-bold">EventHub</a>
+            <a href="{% url 'organizer_dashboard' %}" class="text-white text-2xl font-bold">EventHub</a>
             <div class="flex items-center">
                 <a href="{% url 'homepage' %}" class="text-white px-4 py-2">Home</a>
                 <a href="{% url 'event_list' %}" class="text-white px-4 py-2">Events</a>
@@ -27,8 +27,8 @@
                         value="{{ request.GET.search }}">
                     <button type="submit" class="bg-slate-500 text-white px-4 py-2 rounded-r-lg">Search</button>
                 </form>
-                <a href="{% url 'organizer_dashboard' %}"
-                    class="text-white px-4 py-2 ml-6 bg-blue-800 rounded-lg hover:bg-blue-700">Dashboard</a>
+                <a href="{% url 'sign_in' %}" class="text-white px-4 py-2 ml-6 bg-green-800 rounded-lg hover:bg-green-700">Sign In</a>
+                <a href="{% url 'sign_up' %}" class="text-white px-4 py-2 ml-6 bg-green-800 rounded-lg hover:bg-green-700">Sign Up</a>
             </div>
         </div>
     </nav>

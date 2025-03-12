@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-200">
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-lg p-8">
+        <h2
+            class="text-2xl font-semibold text-center text-white bg-gradient-to-r from-pink-500 to-blue-500 py-4 rounded-t-lg">
+            Sign Up</h2>
+        <form>
+            <!-- Full Name -->
+            <!-- First Name -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">First Name</label>
+                <input type="text"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter your first name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Last Name</label>
+                <input type="text"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter your last name" required>
+            </div>
+
+            <!-- Username -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Username</label>
+                <input type="text"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Choose a username" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Email</label>
+                <input type="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter your email" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Phone Number</label>
+                <input type="text"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter your phone number" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Password</label>
+                <input type="password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter your password" required>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium">Confirm Password</label>
+                <input type="password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Confirm your password" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-6">
+                <label class="block text-gray-700 font-medium">Gender</label>
+                <div class="flex space-x-4 mt-2">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="gender" class="w-4 h-4 text-blue-500" required>
+                        <span class="text-gray-700">Male</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="gender" class="w-4 h-4 text-blue-500">
+                        <span class="text-gray-700">Female</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="gender" class="w-4 h-4 text-blue-500">
+                        <span class="text-gray-700">Prefer not to say</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-2 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg hover:opacity-90 transition">
+                Register
+            </button>
+
+            <!-- Already have an account? -->
+            <p class="text-center mt-4 text-gray-700">Already have an account?
+                <a href="{% url 'sign_in' %}" class="text-blue-500 hover:underline">Sign in</a>
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>

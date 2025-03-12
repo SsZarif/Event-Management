@@ -1,4 +1,5 @@
 from datetime import date
+from django.contrib import messages
 from django.db.models import Count, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event, Participant, Category
@@ -129,3 +130,25 @@ def category_list(request):
     categories = Category.objects.all()
     return render(request, 'category/category_list.html', {'categories': categories})
 
+
+# --------- Registrations ----------
+
+# def sign_in(request):
+#     return render(request, 'register/sign_in.html')
+
+# def sign_up(request):
+#     form = CustomRegistrationForm()
+        
+#     if request.method == "POST":
+#         form = CustomRegistrationForm(request.POST)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#             user = form.save(commit = False)
+#             user.set_password(form.cleaned_data['password'])   
+#             user.is_active = False
+#             user.save()
+            
+#             messages.success(request, "A confirmation email has been sent to your email address.")
+#             return redirect("sign-in")
+            
+#     return render(request,'register/sign_up.html', {"form": form})

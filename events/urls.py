@@ -22,4 +22,8 @@ urlpatterns = [
     path('category/list/', views.category_list, name='category_list'),
     path('category/update/<int:pk>/', views.update_category, name='update_category'),
     path('category/delete/<int:pk>/', views.delete_category, name='delete_category'),
+    
+    # path('sign-in/', views.sign_in, name='sign_in'),
+    # path('sign-up/', views.sign_up, name='sign_up'),
+
 ]
