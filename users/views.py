@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
+from django.views.decorators.http import require_POST
+
 
 # Create your views here.
 
@@ -9,7 +11,23 @@ from .forms import SignUpForm
 # --------- Registrations ----------
 
 def sign_in(request):
-    return render(request, 'register/sign_in.html')
+    if request.method == 'POST':
+        form = SignInForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            
+            if form.cleaned_data.get('remember_me'):
+                request.session.set_expiry(3600 * 24 * 7)  # 1 week session expiry
+            else:
+                request.session.set_expiry(0)  # Session expires when the browser is closed
+                
+            return redirect('home')
+    else:
+        form = SignInForm()
+
+    return render(request, 'register/sign_in.html', {'form': form})
+
 
 def sign_up(request):
     if request.method == "POST":
@@ -25,3 +43,8 @@ def sign_up(request):
         form = SignUpForm()
     
     return render(request, "register/sign_up.html", {"form": form})
+
+
+def sign_out(request):
+    logout(request)
+    return redirect('sign_in')  # Always redirect after POST
