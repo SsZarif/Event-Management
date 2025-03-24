@@ -7,6 +7,10 @@ from django.views.decorators.http import require_POST
 
 # Create your views here.
 
+# --------- Admin Panel ----------
+def admin_dashboard(request):
+    return render(request, 'admin/admin_dashboard.html')
+
 
 # --------- Registrations ----------
 

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .active-nav {
+            background: linear-gradient(90deg, rgba(99,102,241,0.1) 0%, rgba(99,102,241,0) 100%);
+            border-right: 3px solid #6366f1;
+            color: #6366f1 !important;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-['Inter']">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-xl fixed h-full border-r border-gray-200">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-indigo-600">EventMaster</h2>
+            </div>
+            <nav class="mt-6 space-y-1">
+                <a href="#" onclick="showSection('dashboard')" class="flex items-center px-6 py-3 text-gray-500 hover:bg-indigo-50 group font-medium">
+                    <span class="mr-3">📊</span> Dashboard
+                </a>
+                <a href="{% url 'create_event' %}" class="flex items-center px-6 py-3 text-gray-500 hover:bg-indigo-50 group font-medium">
+                    <span class="mr-3">📅</span> Events
+                </a>
+                <a href="{% url 'create_category' %}" class="flex items-center px-6 py-3 text-gray-500 hover:bg-indigo-50 group font-medium">
+                    <span class="mr-3">🗂️</span> Categories
+                </a>
+                <a href="{% url 'create_participant' %}" class="flex items-center px-6 py-3 text-gray-500 hover:bg-indigo-50 group font-medium">
+                    <span class="mr-3">👥</span> Participants
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-500 hover:bg-indigo-50 group font-medium">
+                    <span class="mr-3">🏷️</span> Groups
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 flex-1 p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8 pb-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 bg-indigo-50 px-4 py-2 rounded-lg">
+                        <span class="text-indigo-600">👤</span>
+                        <span class="text-gray-700 font-medium">{{ request.user.username }}</span>
+                    </div>
+                    <a href="{% url 'sign_out' %}" class="text-gray-500 hover:text-red-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="stats-card p-6 rounded-xl border border-gray-200 hover:shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Total Events</p>
+                                <p class="text-2xl font-bold text-gray-800">142</p>
+                            </div>
+                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                📅
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add similar stats cards -->
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events" class="content-section hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800">Event Management</h2>
+                    <a href="{% url 'create_event' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Create Event
+                    </a>
+                </div>
+                
+                <!-- Events Table -->
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr class="text-left text-gray-500 text-sm font-medium">
+                                <th class="px-6 py-4">Event Title</th>
+                                <th class="px-6 py-4">Date</th>
+                                <th class="px-6 py-4">Location</th>
+                                <th class="px-6 py-4">Status</th>
+                                <th class="px-6 py-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 font-medium text-gray-800">Tech Conference 2024</td>
+                                <td class="px-6 py-4">2024-03-15</td>
+                                <td class="px-6 py-4">Convention Center</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 flex space-x-4">
+                                    <button class="text-indigo-600 hover:text-indigo-800">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="text-red-500 hover:text-red-700">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Other Sections (Similar Structure) -->
+
+        </main>
+    </div>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update active navigation
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active-nav');
+            });
+            event.target.classList.add('active-nav');
+        }
+
+        // Initialize with Dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dashboard');
+            document.querySelector('nav a:first-child').classList.add('active-nav');
+        });
+    </script>
+</body>
+</html>
